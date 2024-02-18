@@ -1,7 +1,7 @@
 ---
-title: Welcome to my blog
+title: Blogando sobre Computing
 ---
 
-# Hello
+# Início
 
-
+Clear is better than clever.
