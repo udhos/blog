@@ -5,13 +5,13 @@ date: 2024-02-18
 
 * [Resumo](#resumo)
 * [O que é groupcache?](#o-que-é-groupcache)
-  * [1\. Resolve o problema do "estouro da manada" (thundering herd)](#1-resolve-o-problema-do-estouro-da-manada-thundering-herd)
-  * [2\. Não requer manutenção de um conjunto extra de servidores (cache centralizado)](#2-não-requer-manutenção-de-um-conjunto-extra-de-servidores-cache-centralizado)
+  * [1 \- Resolve o problema do "estouro da manada" (thundering herd)](#1---resolve-o-problema-do-estouro-da-manada-thundering-herd)
+  * [2 \- Não requer manutenção de um conjunto extra de servidores (cache centralizado)](#2---não-requer-manutenção-de-um-conjunto-extra-de-servidores-cache-centralizado)
 * [Mas qual groupcache?](#mas-qual-groupcache)
 * [Como utilizar](#como-utilizar)
-  * [1/3\. Declare os peers](#13-declare-os-peers)
-  * [2/3\. Crie um grupo](#23-crie-um-grupo)
-  * [3/3\. Consulte o cache](#33-consulte-o-cache)
+  * [1/3 \- Declare os peers](#13---declare-os-peers)
+  * [2/3 \- Crie um grupo](#23---crie-um-grupo)
+  * [3/3 \- Consulte o cache](#33---consulte-o-cache)
 * [Exemplo concreto: Kubernetes](#exemplo-concreto-kubernetes)
   * [Proxy: kubecache](#proxy-kubecache)
     * [Descoberta de peers](#descoberta-de-peers)
@@ -19,6 +19,7 @@ date: 2024-02-18
     * [Testando o kubecache](#testando-o-kubecache)
 * [Outro exemplo: oauth2 client\-credentials](#outro-exemplo-oauth2-client-credentials)
 * [Outras Métricas, Logs e Traces](#outras-métricas-logs-e-traces)
+* [Referências](#referências)
 
 # Resumo
 
@@ -32,13 +33,13 @@ Diferente de caches centralizados, como o Redis, o groupcache é uma biblioteca 
 
 O groupcache traz dois grandes benefícios:
 
-## 1. Resolve o problema do "estouro da manada" (thundering herd)
+## 1 - Resolve o problema do "estouro da manada" (thundering herd)
 
 Quando múltiplos clientes buscam concorrentemente uma chave que não está disponível no cache, o **groupcache** coordena o preenchimento do cache em uma única instância que obterá a informação necessária e distribuirá para todas as demais instâncias.
 
 Esse problema é especialmente importante para aplicações extremamente carregadas que dependem de uma chave que acabou de expirar no cache centralizado: se não houver coordenação, todas as instâncias da aplicação recorrerão ao banco de dados (ou outro serviço) para obter a informação atualizada.
 
-## 2. Não requer manutenção de um conjunto extra de servidores (cache centralizado)
+## 2 - Não requer manutenção de um conjunto extra de servidores (cache centralizado)
 
 O groupcache é parte da aplicação e escala junto com ela. Ao adicionar novas instâncias à aplicação, a capacidade do cache aumenta proporcionalmente. Não existe a necessidade de implantar e administrar um conjunto separado de servidores/serviços centralizados (como o Redis).
 
@@ -66,7 +67,7 @@ O **modernprogram** é um fork do **mailgun** que adiciona exclusivamente o supo
 
 Olhando superficialmente, a utilização do groupcache parece muito simples, em apenas 3 passos.
 
-## 1/3. Declare os peers
+## 1/3 - Declare os peers
 
 A função `groupcache.NewHTTPPool()` registra as rotas da instância do **groupcache** no http mux padrão do Go, para que todas as instâncias possam se comunicar entre si. O valor `peers` retornado deve ser usado para registrar os URLs de todas as instâncias da aplicação.
 
@@ -80,7 +81,7 @@ peers := groupcache.NewHTTPPool(me)
 peers.Set("http://10.0.0.1", "http://10.0.0.2", "http://10.0.0.3")
 ```
 
-## 2/3. Crie um grupo
+## 2/3 - Crie um grupo
 
 Observe que a criação do grupo requer uma função de preenchimento. Quando a chave (key) não for encontrada no cache, o **groupcache** automaticamente utilizará a função de preenchimento para obter o conteúdo, que será guardado no cache e devolvido para o invocador.
 
@@ -93,7 +94,7 @@ var thumbNails = groupcache.NewGroup("thumbnail", 64<<20, groupcache.GetterFunc(
     }))
 ```
 
-## 3/3. Consulte o cache
+## 3/3 - Consulte o cache
 
 Quando a aplicação precisar da informação, ela consultará o cache usando a função `cache.Get(...)`. `cache` é a variável que armazena o cache, como `thumbNails` no exemplo abaixo. É responsabilidade do groupcache recuperar ou gerar a informação que ainda não estiver cacheada.
 
@@ -236,9 +237,15 @@ Por exemplo, o projeto [groupcache_oauth2](https://github.com/udhos/groupcache_o
 
 # Outras Métricas, Logs e Traces
 
-A aplicação **kubecache** também expões métricas de requisições HTTP no formato do Prometheus, registra logs utilizando o pacote [zerolog](https://github.com/rs/zerolog) e está instrumentada para envio de traces com o [OpenTelemetry](https://opentelemetry.io/docs/languages/go/instrumentation/).
+A aplicação **kubecache** também expõe métricas de requisições HTTP no formato do Prometheus, registra logs utilizando o pacote [zerolog](https://github.com/rs/zerolog) e está instrumentada para envio de traces com o [OpenTelemetry](https://opentelemetry.io/docs/languages/go/instrumentation/).
 
 O **groupcache** não causa nenhuma interação especial com esses outros itens de observability.
+
+# Conclusão
+
+O **groupcache** oferece uma alternativa interessante de cache distribuído para aplicações Go, com o benefício de tratar adequadamente o problema de Thundering Herd.
+
+O roteiro apresentado nesse documento ilustra em detalhes como implementar o **groupcache** para implantação em ambiente Kubernetes, endereçando os temas de decoberta automática de peers (PODs) e de exposição de métricas do cache distribuído no formato do Prometheus.
 
 # Referências
 
