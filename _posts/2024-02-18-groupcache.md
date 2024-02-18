@@ -3,6 +3,8 @@ title: "Implementando uma aplicação em Go com Groupcache no Kubernetes"
 date: 2024-02-18
 ---
 
+![Groupcache](images/groupcache.png "Groupcache")
+
 * [Resumo](#resumo)
 * [O que é groupcache?](#o-que-é-groupcache)
   * [1 \- Resolve o problema do "estouro da manada" (thundering herd)](#1---resolve-o-problema-do-estouro-da-manada-thundering-herd)
