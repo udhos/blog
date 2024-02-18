@@ -70,7 +70,7 @@ Olhando superficialmente, a utilização do groupcache parece muito simples, em 
 
 A função `groupcache.NewHTTPPool()` registra as rotas da instância do **groupcache** no http mux padrão do Go, para que todas as instâncias possam se comunicar entre si. O valor `peers` retornado deve ser usado para registrar os URLs de todas as instâncias da aplicação.
 
-**NOTA**: Apesar de não estar expícito nesse guia de 3 passos, o **groupcache** espera que a aplicação lance um servidor HTTP usando o mux padrão.
+**NOTA**: Apesar de não estar explícito nesse guia de 3 passos, o **groupcache** espera que a aplicação lance um servidor HTTP usando o mux padrão.
 
 ```
 me := "http://10.0.0.1"
