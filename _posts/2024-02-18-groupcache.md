@@ -157,7 +157,7 @@ Por ser independente do ambiente de implantação, o **groupcache** não expõe 
 
 Para expor as métricas do **groupcache** no formato do Prometheus, usamos a biblioteca [groupcache_exporter](https://github.com/udhos/groupcache_exporter).
 
-A utilização do **groupcache_exporter** é ilustrada abaixo. Para ver como o **groupcache_exporter** é ativado no **kubecache**, vide: [groupcache_exporter no kubecache](https://github.com/udhos/kubecache/blob/main/cmd/kubecache/groupcache.go#L152).
+A utilização do **groupcache_exporter** é ilustrada abaixo. Para ver como o **groupcache_exporter** é ativado no **kubecache**, consulte: [groupcache_exporter no kubecache](https://github.com/udhos/kubecache/blob/main/cmd/kubecache/groupcache.go#L152).
 
 ```
 g := modernprogram.New(app.cache)
@@ -220,7 +220,7 @@ configMapProperties:
   #CACHE_TTL: 300s
 ```
 
-Assim que o **kubecache** estiver rodando no Kubernetes com a variável `BACKEND_URL` apontando para o serviço de backup, será possível testar a chamada a partir de um POD com o `curl`:
+Assim que o **kubecache** estiver rodando no Kubernetes com a variável `BACKEND_URL` apontando para o serviço de backend, será possível testar a chamada a partir de um POD com o `curl`:
 
 ```
 curl kubecache:9000/rota/do/backend
@@ -230,9 +230,9 @@ Para mais informações, visite o projeto: https://github.com/udhos/kubecache
 
 # Outro exemplo: oauth2 client-credentials
 
-Uma vez que uma aplicação está preparada com o groupcache, ela pode ser facilmente extendida para criar vários grupos para armazenar diferentes tipos de informações.
+Uma vez que uma aplicação estiver preparada com o groupcache, ela pode ser facilmente extendida para criar vários grupos para armazenar diferentes tipos de informações.
 
-Por exemplo, o projeto [groupcache_oauth2](https://github.com/udhos/groupcache_oauth2) oferece um plugin para fazer requisições para endpoints protegidos pelo fluxo client-credentials do oauth2.
+Por exemplo, o projeto [groupcache_oauth2](https://github.com/udhos/groupcache_oauth2) oferece um plugin para fazer requisições para endpoints protegidos pelo fluxo client-credentials do oauth2. Automaticamente, os tokens são recuperados, armazenados no **groupcache** e renovados conforme necessário.
 
 # Outras Métricas, Logs e Traces
 
