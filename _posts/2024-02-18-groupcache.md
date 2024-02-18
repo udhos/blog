@@ -3,7 +3,7 @@ title: "Implementando uma aplicação em Go com Groupcache no Kubernetes"
 date: 2024-02-18
 ---
 
-![Groupcache](images/groupcache.png "Groupcache")
+![Groupcache](/blog/assets/groupcache.png)
 
 * [Resumo](#resumo)
 * [O que é groupcache?](#o-que-é-groupcache)
