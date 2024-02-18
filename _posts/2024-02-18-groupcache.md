@@ -200,7 +200,7 @@ O **kubecache** é uma aplicação real criada somente para demonstrar a utiliza
 Por exemplo, o helm pode ser usado para instalar:
 
 ```
-helm repo add kubecache [https://udhos.github.io/kubecache](https://udhos.github.io/kubecache)
+helm repo add kubecache https://udhos.github.io/kubecache
 
 helm upgrade kubecache kubecache/kubecache --install --values values.yaml
 ```
