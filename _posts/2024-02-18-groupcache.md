@@ -59,8 +59,8 @@ O **modernprogram** é um fork do **mailgun** que adiciona exclusivamente o supo
 | [galaxycache](https://github.com/vimeo/galaxycache) | Sim | Não (*2) |
 | [modernprogram](https://github.com/modernprogram/groupcache) | Sim | Sim |
 
-- (*1) [https://github.com/mailgun/groupcache/issues/66]
-- (*2) [https://github.com/vimeo/galaxycache/pull/25]
+- (*1) [https://github.com/mailgun/groupcache/issues/66](https://github.com/mailgun/groupcache/issues/66)
+- (*2) [https://github.com/vimeo/galaxycache/pull/25](https://github.com/vimeo/galaxycache/pull/25)
 
 # Como utilizar
 
@@ -200,7 +200,7 @@ O **kubecache** é uma aplicação real criada somente para demonstrar a utiliza
 Por exemplo, o helm pode ser usado para instalar:
 
 ```
-helm repo add kubecache [https://udhos.github.io/kubecache]
+helm repo add kubecache [https://udhos.github.io/kubecache](https://udhos.github.io/kubecache)
 
 helm upgrade kubecache kubecache/kubecache --install --values values.yaml
 ```
@@ -226,7 +226,7 @@ Assim que o **kubecache** estiver rodando no Kubernetes com a variável `BACKEND
 curl kubecache:9000/rota/do/backend
 ```
 
-Para mais informações, visite o projeto: [https://github.com/udhos/kubecache]
+Para mais informações, visite o projeto: [https://github.com/udhos/kubecache](https://github.com/udhos/kubecache)
 
 # Outro exemplo: oauth2 client-credentials
 
