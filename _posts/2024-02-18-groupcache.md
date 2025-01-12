@@ -247,7 +247,7 @@ O **groupcache** não causa nenhuma interação especial com esses outros itens 
 
 O **groupcache** oferece uma alternativa interessante de cache distribuído para aplicações Go, com o benefício de tratar adequadamente o problema de Thundering Herd.
 
-O roteiro apresentado nesse documento ilustra em detalhes como implementar o **groupcache** para implantação em ambiente Kubernetes, endereçando os temas de decoberta automática de peers (PODs) e de exposição de métricas do cache distribuído no formato do Prometheus.
+O roteiro apresentado nesse documento ilustra em detalhes como implementar o **groupcache** para implantação em ambiente Kubernetes, endereçando os temas de descoberta automática de peers (PODs) e de exposição de métricas do cache distribuído no formato do Prometheus.
 
 # Referências
 
