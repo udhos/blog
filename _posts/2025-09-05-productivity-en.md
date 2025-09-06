@@ -3,7 +3,7 @@ title: "Go Language: Productivity for Software Engineering"
 date: 2025-09-05
 ---
 
-[Português](/blog/2025/09/05/productivity-pt.html)
+![Squad](/blog/docs/assets/gophers-squad.png)
 
 ![Go Gophers working together](https://storage.googleapis.com/gweb-uniblog-publish-prod/images/go-banner.width-1200.format-webp)
 
