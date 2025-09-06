@@ -3,9 +3,9 @@ title: "Go Language: Productivity for Software Engineering"
 date: 2025-09-05
 ---
 
-![Squad](/blog/docs/assets/gophers-squad.png)
+[Versão em Português](/blog/2025/09/05/productivity-pt.html)
 
-![Go Gophers working together](https://storage.googleapis.com/gweb-uniblog-publish-prod/images/go-banner.width-1200.format-webp)
+![Squad](/blog/docs/assets/gophers-squad.png)
 
 # Programming vs. Software Engineering
 

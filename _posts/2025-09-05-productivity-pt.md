@@ -3,7 +3,7 @@ title: "Linguagem Go: Produtividade para Engenharia de Software"
 date: 2025-09-05
 ---
 
-[English](/blog/2025/09/05/productivity-en.html)
+[English Version](/blog/2025/09/05/productivity-en.html)
 
 ![Squad](/blog/docs/assets/gophers-squad.png)
 
