@@ -55,7 +55,7 @@ Yes, there is pain. While we wait for them to be updated, we must be aware that 
 
 # Key Takeaways
 
-1. Whenever you need to cancel a context, be polite and provide a clear, explicit cause.
+1\. Whenever you need to cancel a context, be polite and provide a clear, explicit cause.
 
 ```go
 ctx, cancelWithCause := context.WithCancelCause(context.Background())
@@ -63,9 +63,9 @@ ctx, cancelWithCause := context.WithCancelCause(context.Background())
 cancelWithCause(fmt.Errorf("client connection has been closed: %w", err))
 ```
 
-2. `context.WithCancelCause` was added in Go 1.20. Libraries predating that version are likely to fail to provide a cause when cancelling their contexts. Hence, be prepared to deal with unexpected `context canceled` errors from those libraries.
+2\. `context.WithCancelCause` was added in Go 1.20. Libraries predating that version are likely to fail to provide a cause when cancelling their contexts. Hence, be prepared to deal with unexpected `context canceled` errors from those libraries.
 
-3. The HTTP server from the standard library is known for cancelling contexts without providing the cause. But there is hope for the future (see the issue below).
+3\. The HTTP server from the standard library is known for cancelling contexts without providing the cause. But there is hope for the future (see the issue below).
 
 # References
 
