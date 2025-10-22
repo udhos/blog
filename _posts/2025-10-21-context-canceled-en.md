@@ -9,15 +9,15 @@ date: 2025-10-21
 
 # Package context
 
-The [package context documentation](https://pkg.go.dev/context) introduces the context concept thus:
+The [package context documentation](https://pkg.go.dev/context) introduces the context concept as follows:
 
 > Package context defines the Context type, which carries deadlines, cancellation signals, and other request-scoped values across API boundaries and between processes.
 > 
 > Incoming requests to a server should create a Context, and outgoing calls to servers should accept a Context.
 
-Therefore in http handlers we retrieve the context from http requests and then we propagate it into other pieces.
+Therefore, in HTTP handlers we retrieve the context from HTTP requests and then propagate it into other components.
 
-Since we check properly for errors, and we also log unexpected errors, we are likely to soon find unclear `context canceled` errors popping up in our production logs.
+Since we properly check for errors and also log unexpected errors, we are likely to soon find unclear `context canceled` errors popping up in our production logs.
 
 ```
 The database query returned this error: context canceled
@@ -25,17 +25,17 @@ The database query returned this error: context canceled
 
 Is that even an error?
 
-# Who Did Canceled My Golang HTTP Context?
+# Who Canceled My Golang HTTP Context?
 
-By double-checking the application code, we feel assured that it didn't cancel the context.
+Double-checking the application code, we are reassured that it didn't cancel the context.
 
 Who did?
 
 One usual suspect is the library that created the context for us, if any.
 
-For instance, the HTTP server package from the standard library is known for cancelling requests whenever it detects the client connection has been broken. Since the http caller is gone, there is little point in finishing the request.
+For instance, the HTTP server package from the standard library is known for cancelling requests whenever it detects the client connection has been broken. Since the HTTP caller is gone, there is little point in finishing the request.
 
-But now the `canceled context` condition is going to be reported as error by any service for whom we forwarded the context. It is not an actual error, but it is hard to tell it from a real error because it does not provide the cause.
+But now the `context canceled` condition is going to be reported as an error by any service to which we forwarded the context. It is not even an actual error, but it is hard to tell it from a real error because it does not provide the cause.
 
 # How to Prevent This Ambiguity?
 
@@ -47,15 +47,15 @@ ctx, cancelWithCause := context.WithCancelCause(context.Background())
 cancelWithCause(fmt.Errorf("client connection has been closed: %w", err))
 ```
 
-Then we should always be polite and provide the explicit cause when cancelling a context. The cause of cancellation will likely be logged in our error checking code, making it clear why the context was canceled.
+We should always be polite and provide an explicit cause when cancelling a context. The cause of cancellation will likely be logged in our error checking code, making it clear why the context was cancelled.
 
 What about existing libraries that cancel contexts without providing a cause?
 
-Yes, they are a pain. While we wait for them to be updated, we must be aware that unclear `context canceled` messages may appear in our logs and might not signal actual errors!
+Yes, there is pain. While we wait for them to be updated, we must be aware that unclear `context canceled` messages may appear in our logs and might not signal actual errors!
 
 # Key Takeaways
 
-1. Whenever you need to cancel a context, be polite and provide the clear explicit cause.
+1. Whenever you need to cancel a context, be polite and provide a clear, explicit cause.
 
 ```go
 ctx, cancelWithCause := context.WithCancelCause(context.Background())
@@ -63,10 +63,10 @@ ctx, cancelWithCause := context.WithCancelCause(context.Background())
 cancelWithCause(fmt.Errorf("client connection has been closed: %w", err))
 ```
 
-2. `context.WithCancelCause` has been added in Go 1.20. Libraries predating that version are likely to fail in providing a cause when cancelling their contexts. Hence be prepared to deal with unexpected `context canceled` errors from those libraries.
+2. `context.WithCancelCause` was added in Go 1.20. Libraries predating that version are likely to fail to provide a cause when cancelling their contexts. Hence, be prepared to deal with unexpected `context canceled` errors from those libraries.
 
-3. The http server from standard library is known for cancelling contexts with a cause. There is hope for the feature (see the issue below).
+3. The HTTP server from the standard library is known for cancelling contexts with a cause. But there is hope for the future (see the issue below).
 
 # References
 
-[proposal: net/http: add context cancelation reason for server handlers](https://github.com/golang/go/issues/64465)
+[proposal: net/http: add context cancellation reason for server handlers](https://github.com/golang/go/issues/64465)
