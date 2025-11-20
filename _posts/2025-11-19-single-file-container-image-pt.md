@@ -1,5 +1,5 @@
 ---
-title: "Imagem de Contêiner com Executável Único"
+title: "Imagem de Contêiner com Executável Go Único"
 date: 2025-11-19
 ---
 
