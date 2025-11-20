@@ -5,7 +5,7 @@ date: 2025-11-19
 
 [Versão em Português](/blog/2025/11/19/single-file-container-image-pt.html)
 
-![Gopher Container](/blog/docs/assets/gopher_docker.png)
+![Gopher Container](/blog/docs/assets/golang_docker.png)
 
 # Introduction
 
@@ -110,7 +110,7 @@ $ docker run --rm -p 8080:8080 -it udhos/web-scratch:latest
 
 It works! Just access `http://localhost:8080` in your browser to see the application running.
 
-![Browser Screenshot](/blog/docs/assets/gopher_docker_screenshot.png)
+![Browser Screenshot](/blog/docs/assets/golang_docker_screenshot.png)
 
 # Conclusion
 
