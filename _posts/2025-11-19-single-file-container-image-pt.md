@@ -29,7 +29,7 @@ Considere o seguinte comando de compilação.
 $ CGO_ENABLED=0 go install -ldflags='-s -w' -trimpath ./app
 ```
 
-Podemos verificar que o binário gerado é um executável estático usando o comando `file`. Note o trech `statically linked` na saída.
+Podemos verificar que o binário gerado é um executável estático usando o comando `file`. Note o trecho `statically linked` na saída.
 
 ```bash
 $ file `which app`
@@ -50,7 +50,7 @@ Podemos criar uma imagem de contêiner Docker que contenha apenas este único ar
 
 # Criando uma Imagem de Contêiner com um Único Arquivo
 
-O Dockerfile abaixo mostra como fazer usando build em dois estágios. No primeiro estágio, usamos a imagem oficial do Go para compilar o binário estático. No segundo estágio, usamos a imagem `scratch`, que é uma imagem vazia, para criar uma imagem de contêiner mínima contendo apenas o binário compilado.
+O Dockerfile abaixo mostra o build da imagem em dois estágios. No primeiro estágio, usamos a imagem oficial do Go para compilar o binário estático. No segundo estágio, usamos a imagem `scratch`, que é uma imagem vazia, para criar uma imagem de contêiner mínima contendo apenas o binário compilado.
 
 ```Dockerfile
 # STEP 1 build executable binary
@@ -86,7 +86,9 @@ REPOSITORY          TAG       IMAGE ID       CREATED          SIZE
 udhos/web-scratch   latest    b7a2982cab1f   33 minutes ago   6.1MB
 ```
 
-Mas será que a imagem funciona corretamente? Vamos testar executando um contêiner a partir da imagem criada:
+6.1 MB!
+
+Mas será que a imagem funciona corretamente? Vamos executar um contêiner a partir da imagem criada:
 
 ```bash
 $ docker run --rm -p 8080:8080 -it udhos/web-scratch:latest
@@ -105,7 +107,7 @@ $ docker run --rm -p 8080:8080 -it udhos/web-scratch:latest
 2025/11/20 01:14:42 serving HTTP on TCP :8080
 ```
 
-Sim! Basta acessar `http://localhost:8080` no navegador para ver a aplicação em funcionamento.
+Funciona! Basta acessar `http://localhost:8080` no navegador para ver a aplicação em funcionamento.
 
 ![Browser Screenshot](/blog/docs/assets/gopher_docker_screenshot.png)
 
