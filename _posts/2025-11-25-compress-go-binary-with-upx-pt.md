@@ -5,13 +5,15 @@ date: 2025-11-25
 
 [Version in English](/blog/2025/11/25/compress-go-binary-with-upx-en.html)
 
-![Gopher Container](/blog/docs/assets/gopher_upx.png)
+![Gopher UPX](/blog/docs/assets/gopher_upx.png)
 
 # UPX
 
 O [upx](https://upx.github.io/) (Ultimate Packer for eXecutables) é uma ferramenta de compressão de executáveis que pode reduzir significativamente o tamanho de binários compilados, incluindo aqueles gerados pela linguagem Go.
 
 ```bash
+# receita rápida para baixar e usar o upx
+
 cd /tmp
 wget https://github.com/upx/upx/releases/download/v5.0.2/upx-5.0.2-amd64_linux.tar.xz
 tar xf upx-5.0.2-amd64_linux.tar.xz
