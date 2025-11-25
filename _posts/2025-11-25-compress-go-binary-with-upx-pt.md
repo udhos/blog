@@ -67,4 +67,4 @@ A redução do tamanho final da imagem Docker foi de 14.8%.
 
 O upx produziu boa redução no tamanho binário do Go: ~ 45% sem strip e ~ 63% em relação ao binário com strip. 
 
-Na image no Docker Hub, para binário com strip, a redução do upx foi menor (~ 14%), pois o registry já fornece compressão eficiente.
+Na imagem no Docker Hub, para binário com strip, a redução do upx foi menor (~ 14%), pois o registry já fornece compressão eficiente.
