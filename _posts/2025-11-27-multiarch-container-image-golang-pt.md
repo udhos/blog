@@ -13,9 +13,9 @@ Por razões econômicas, frequentemente precisamos rodar nossa aplicação em di
 
 Uma imagem de contêiner multiarquitetura consegue atender cargas de trabalho executando em diferentes arquiteturas. O contêiner runtime obterá a imagem correta segundo a arquitetura da máquina onde está rodando.
 
-A imagem multiarquitetura é especialmente útil quando estamos migrando nossa aplicação entre máquinas de diferentes arquiteturas: a receita de implantação pode utilizar exatamente a mesma imagem, independente da arquitetura da máquina hospedeira.
+A imagem multiarquitetura é especialmente útil quando estamos migrando nossa aplicação entre máquinas de diferentes arquiteturas: a receita de implantação pode utilizar exatamente a mesma imagem, independentemente da arquitetura da máquina hospedeira.
 
-Linguagens que não possuem bom suporte para cross-compilation podem criar alguns desafios para criar imagens multiarch. Felizmente, o Go possui excelente suporte para cross-compilation, o que facilita imensamente a geração de imagem multiarquitetura.
+Linguagens que não possuem bom suporte para cross-compilation podem apresentar alguns desafios para criar imagens multiarch. Felizmente, o Go possui excelente suporte para cross-compilation, o que facilita imensamente a geração de imagem multiarquitetura.
 
 # Gerando Imagem Multiarquitetura com Go
 
