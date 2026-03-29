@@ -155,4 +155,4 @@ func VerifyPresignedGetCallerIdentity(ctx context.Context, client *http.Client,
 
 Você pode clonar o projeto abaixo com exemplos de código totalmente funcionais para cliente e servidor.
 
-[aws-sts-proof](https://github.com/udhos/aws-sts-proof) is a lightweight implementation of IAM-based authentication using signed GetCallerIdentity requests.
+[aws-sts-proof](https://github.com/udhos/aws-sts-proof) é uma implementação leve de autenticação baseada em IAM usando solicitações GetCallerIdentity pré-assinadas.
