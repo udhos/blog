@@ -11,7 +11,7 @@ date: 2026-03-29
 
 A tarefa em mãos é: a aplicação A (o `cliente`) precisa se autenticar para a aplicação B (o `servidor`) sem compartilhar quaisquer credenciais.
 
-Não queremos compartilhar credenciais por razões bem conhecidas. Por um lado, aumentaria o risco de vazamento de credenciais. Além disso, evitamos confiar tanto no servidor.
+Não queremos compartilhar credenciais por razões bem conhecidas. Por um lado, aumentaria o risco de vazamento de credenciais. Além disso, evitamos confiar ao servidor a guarda das nossas credenciais.
 
 Como o cliente pode provar sua identidade para o servidor sem compartilhar credenciais?
 
